@@ -187,10 +187,9 @@ form div{
     padding:0px 40px 40px 40px;
   }
 }
-@media(max-width:991px){
-  .col-12.cars{
-    margin:20px 0px;
-  }
+
+.col-12{
+  margin:20px 10px;
 }
 
 #services h1,#services h2,#services h3 , #temoignages h1, #temoignages h2,#temoignages h3{
