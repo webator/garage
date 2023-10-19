@@ -268,7 +268,13 @@ form ul{
   position: relative;
   min-height: 10px;
 }
-
+#slider, #services, #occasions, #temoignages, #contact{
+  width:100%;
+}
+.row{
+  --bs-gutter-x:0px !important;
+  --bs-guttter-y:0px !important;
+}
 .form_control {
   position: relative;
   display: flex;
