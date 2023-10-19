@@ -1,0 +1,20 @@
+    <div id="temoignages" class="row">
+    <div class="col-12 title"><center><h2>Témoignages</h2></center></div>
+    {% for temoignage in temoignages %}
+        <div class="col-12 col-md-6 temoignages">
+            <p>"{{temoignage.commentaire}}"</p>
+            <p><b>{{temoignage.note}}/20 | {{temoignage.nom}}</b></p>
+        </div>
+    {% endfor %}
+        <div class="col-12 title"><center><h3>Vous souhaitez témoigner ?</h3></center></div>
+        <div class="col-12 ">
+            {% if formTemoignage is not defined %}
+                <center>Merci pour votre témoignage.</center>
+                <script>scrollToTemoignage()</script>
+            {% else %}
+                <form method="post">
+                    {{form(formTemoignage)}}
+                </form>
+            {% endif %}
+        </div>    
+    </div>

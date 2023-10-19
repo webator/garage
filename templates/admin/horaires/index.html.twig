@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Horaires
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/horaires.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div class="row">
+        <div style="overflow-x:auto; width:100%">
+            <div class="container customtable occasions">
+                <div class="row titleadmin">
+                    <div class="col titleadmin"><h1>Horaires</h1></div>
+                    <div class="col actions"><a href="/admin/horaires/create"><i class="fa fa-plus"></i></a></div>
+                </div>
+                <div class="row header">
+                    <div class="col-4">Jour</div>
+                    <div class="col-4">Tranche</div>
+                    <div class="col-4">Actions</div>
+                </div>
+                {% for horaire in horaires %} 
+                    <div class="row normal" ondblclick="Open({{horaire.id}})">
+                        <div class="col-4 jour" >{{horaire.jour}}</div>
+                        <div class="col-4 tranche">{{horaire.tranche}}</div>
+                        <div class="col-4 actions" >&nbsp;<a href="/admin/horaires/edit/{{horaire.id}}"><i class="fa fa-pen-to-square"></i></a><a id="disable" href="#" onclick="deleteConfirm({{horaire.id}})"  ><i class="fa fa-trash"></i></a></div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

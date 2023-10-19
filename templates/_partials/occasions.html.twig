@@ -1,0 +1,60 @@
+<div id="occasions" class="row">
+    <div class="col-12 title"><center><h2>Voitures d'occasion</h2></center></div>
+    <div class="col-12">
+      <center>
+        <div class="row filters">
+          <div class="col-12 col-md-4 inputs">
+            Prix
+            <div class="range_container">
+                <div class="sliders_control">
+                  <input id="priceMin" type="range" value="0" min="0" max="100000"/>
+                  <input id="priceMax" type="range" value="100000" min="0" max="100000"/>
+                </div>
+                
+            </div>
+              <span id="priceRange"></span>
+              <i id="resetPrice" class="fa-solid fa-arrow-rotate-right" onclick="resetPrice()"></i>
+          </div>
+          <div class="col-12 col-md-4 inputs">
+            Année
+              <div class="range_container">
+                <div class="sliders_control">
+                  {% set currentYear = "now"|date('Y') %}
+                  <input id="yearMin" type="range" value="1960" min="1960" max="{{ currentYear }}"/>
+                  <input id="yearMax" type="range" value="{{ currentYear }}" min="1960" max="{{ currentYear }}"/>
+                </div>
+                <span id="yearRange"></span>
+            </div>
+            &nbsp;<i id="resetYear" class="fa-solid fa-arrow-rotate-right" onclick="resetSelectsYear()"></i>
+          </div>   
+          <div class="col-12 col-md-4 inputs">
+            KM
+              <div class="range_container">
+                <div class="sliders_control">
+                  {% set currentYear = "now"|date('Y') %}
+                  <input id="kmMin" type="range" value="0" min="0" max="300000"/>
+                  <input id="kmMax" type="range" value="300000" min="0" max="300000"/>
+                </div>
+                <span id="kmRange"></span>
+            </div>
+            &nbsp;<i id="resetKM" class="fa-solid fa-arrow-rotate-right" onclick="resetSelectsKM()"></i>
+          </div>          
+        </div>
+      </center>
+    </div>
+    {% for voiture in voitures %}
+        <div class="col-12 col-md-3 cars" data-id ="{{voiture.id}}" data-price="{{voiture.prix}}" data-year="{{voiture.miseencirculation.format('Y')}}" data-km="{{voiture.kilometrage}}">
+            <div style="width:100%; height:250px; background-image:url(/images/voitures/{{voiture.image}}.jpg); background-size:cover;background-position:center center;"></div>
+            <h3>{{voiture.marque.nom}} - {{voiture.modele}}</h3>
+            <h4>€ {{voiture.prix}}</h4>
+            <p><b>{{voiture.miseencirculation.format('d.m.Y')}} - {{voiture.kilometrage}} km</b></p>
+            <h4>Description</h4>
+            <p>{{voiture.description}}</p>
+            <h4>Description technique</h4>
+            <p>{{voiture.technique}}</p>
+            <h4>Contactez-nous</h4>
+            <p>Garage V. Parrot<br/>49, Grand-Rue<br/> 09300 Lavelanet<br/><a href="tel:0041766891991"><i class="fa fa-phone"></i></a></p>
+            <button onclick="ContactFormFill({{voiture.id}})">En savoir plus</button>
+        </div>
+    {% endfor %}
+    </div>

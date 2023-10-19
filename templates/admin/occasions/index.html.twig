@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Occasions
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/occasions.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div class="row">
+        <div style="overflow-x:auto; width:100%">
+            <div class="container customtable occasions">
+                <div class="row titleadmin">
+                    <div class="col titleadmin"><h1>Occasions</h1></div>
+                    <div class="col actions"><a href="/admin/occasion/create"><i class="fa fa-plus"></i></a></div>
+                </div>
+                <div class="row header">
+                    <div class="col-4">Image</div>
+                    <div class="col-4">Nom</div>
+                    <div class="col-4">Actions</div>
+                </div>
+                {% for occasion in occasions %} 
+                    <div class="row normal" ondblclick="Open({{occasion.id}})">
+                        <div class="col-4 name" ><img width="100" src="/images/voitures/{{occasion.image}}.jpg"/></div>
+                        <div class="col-4 nom">{{occasion.marque.nom}} {{occasion.modele}}</div>
+                        <div class="col-4 actions" >&nbsp;<a href="/admin/occasion/edit/{{occasion.id}}"><i class="fa fa-pen-to-square"></i></a><a id="disable" href="#" onclick="deleteConfirm({{occasion.id}})"  ><i class="fa fa-trash"></i></a></div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

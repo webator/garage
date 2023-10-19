@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+            <script src="/includes/js/custom.js"></script>
+{% endblock %}
+{% block body %}
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand  col-7" href="/"><img src="/images/logo.png" width="150" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse col-5" id="navbarColor01">
+      <ul class="navbar-nav me-auto">      
+        <li class="nav-item">
+          <a class="nav-link" href="/#slider">Accueil</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/#services">Services</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/#occasions">Occasions</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/#temoignages">Témoignages</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/#contact">Contact</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% include '_partials/slider.html.twig' %}
+
+{% include '_partials/services.html.twig' %}
+
+{% include '_partials/occasions.html.twig' %}
+
+{% include '_partials/temoignages.html.twig' %}
+
+{% include '_partials/contact.html.twig' %}
+
+
+{% endblock %}

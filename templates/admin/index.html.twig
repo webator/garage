@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div id="container" class="row">
+      <div class="col-12"  style="margin-top:200px"><center><h1>Bienvenue</h1></center></div>  
+    </div>
+
+</div>
+
+{% endblock %}

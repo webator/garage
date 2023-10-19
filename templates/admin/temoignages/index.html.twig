@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gestion témoignages
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/temoignages.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div class="row">
+        <div style="overflow-x:auto; width:100%">
+            <div class="container customtable temoignages">
+                <div class="row titleadmin">
+                    <div class="col titleadmin"><h1>Témoignages</h1></div>
+                    <div class="col actions"><a href="/admin/temoignages/create"><i class="fa fa-plus"></i></a></div>
+                </div>
+                
+                <div class="row header">
+                    <div class="col-3">Nom</div>
+                    <div class="col-3">Commentaires</div>
+                    <div class="col-3">Note</div>
+                    <div class="col-3">Actions</div>
+                </div>
+                {% for temoignage in temoignages %} 
+                    {% if temoignage.status == 0 %}
+                    <div class="row toverify" ondblclick="Open({{temoignage.id}})">
+                    {% else %}
+                    <div class="row normal" ondblclick="Open({{temoignage.id}})">
+                    {% endif %}
+                        <div class="col-3 name" >{{temoignage.nom}}</div>
+                        <div class="col-3 commentaire">{{temoignage.commentaire}}</div>
+                        <div class="col-3 note">{{temoignage.note}}</div>
+                        <div class="col-3 actions" >
+                            {% if temoignage.status == 0 %}
+                                <a id="disable" href="#" onclick="validConfirm({{temoignage.id}})"  ><i class="fa fa-check"></i></a>
+                            {% endif %}
+                            <a id="disable" href="#" onclick="deleteConfirm({{temoignage.id}})"  ><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

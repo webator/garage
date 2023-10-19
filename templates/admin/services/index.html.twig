@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gestion services
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/services.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div class="row">
+        <div style="overflow-x:auto; width:100%">
+            <div class="container customtable services">
+                <div class="row titleadmin">
+                    <div class="col titleadmin"><h1>Services</h1></div>
+                    <div class="col actions"><a href="/admin/services/create"><i class="fa fa-plus"></i></a></div>
+                </div>
+                
+                <div class="row header">
+                    <div class="col-4">Image</div>
+                    <div class="col-4">Nom</div>
+                    <div class="col-4">Actions</div>
+                </div>
+                {% for service in services %} 
+                    <div class="row normal" ondblclick="Open({{service.id}})">
+                        <div class="col-4 name" ><img width="100" src="/images/services/{{service.image}}"/></div>
+                        <div class="col-4 courriel">{{service.titre}}</div>
+                        <div class="col-4 actions" >&nbsp;<a href="/admin/services/edit/{{service.id}}"><i class="fa fa-pen-to-square"></i></a><a id="disable" href="#" onclick="deleteConfirm({{service.id}})"  ><i class="fa fa-trash"></i></a></div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

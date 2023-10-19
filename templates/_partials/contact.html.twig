@@ -1,0 +1,34 @@
+
+    <div id="contact" class="row">
+    <div class="col-12 title"><center><h2>Contact</h2></center></div>
+
+        <div class="col-12 col-md-6">
+          <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum</p>
+          <table border="0">
+          
+        {% for horaire in horaires %}
+            <tr>
+                <td>{{ horaire.journom }}</td>
+                <td>
+                    {% for tranche in horaire.horaires %}
+                        {{ tranche }}&nbsp;&nbsp;
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+          </table>
+        </div>
+        <div class="col-12 col-md-6">
+          {% if formContact is not defined %}
+          Merci pour votre message.
+          <script>scrollToContact()</script>
+          {% else %}
+          <form method="post">
+              
+              {{form(formContact)}}
+          </form>
+          {% endif %}
+          
+        </div>
+    </div>
+</div>

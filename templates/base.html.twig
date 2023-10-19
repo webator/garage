@@ -2,15 +2,36 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="icon" href="/images/favicon.png">   
+
         {% block stylesheets %}
+         
+        <link href="/includes/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="/includes/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="/includes/fontawesome/css/solid.css" rel="stylesheet" />  
+        <link rel="stylesheet" href="/includes/theme/bootstrap.min.css" />
+        <link rel="stylesheet" href="/includes/theme/custom.css" />  
+        
+        
         {% endblock %}
 
         {% block javascripts %}
+        
+        <!--<script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>-->
+        <script src="/includes/theme/bootstrap.min.js"></script>
+        <script src="/includes/theme/popper.js"></script>
+        <script src="/includes/jquery/jquery-3.7.0.min.js"></script>
+        <script src="/includes/jquery/jquery-ui-1.12.1.min.js"></script>
+        <script src="/includes/jquery/jquery-1.12.4.min.js"></script>   
+
+         
         {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        <div id="widget" class="phone"><a href="tel:0041766891991"><i class="fa fa-phone"></i></a></div>
+        <div id="widget" class="mail"><a href="#contact"><i class="fa fa-envelope"></i></a></div>
     </body>
 </html>

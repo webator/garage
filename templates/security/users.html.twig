@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'Users'|trans }}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/users.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/navigation.html.twig' %}
+<!-- End of action and title bar-->
+<div class="container">
+    <div class="row mt-3 header ">
+        <div class="col-6 ">
+            <h1>
+                    <i class="fa fa-user"></i> {{ 'Users'|trans }}
+            </h1>
+        </div>
+        <div class="col-3">
+            <div id="status"></div>
+        </div>
+        <div class="col-3">
+          
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div style="overflow-x:auto; width:100%">
+        <div class="container customtable">
+            <div class="row last">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                {% if app.request.get('_route') == 'app_products_disabled_show' %}
+                <div class="col last"><h3><a href="{{ path('app_users') }}"><i class="fa-solid fa-backward"></i></a></h3></div>
+                {% else %}
+                <div class="col last"><h3><a href="{{ path('app_users_create') }}"><i class="fa fa-plus"></i></a></h3></div>
+                {% endif %}
+            </div>   
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div style="overflow-x:auto; width:100%">
+        <div class="container customtable">
+            <div class="row header">
+                <div class="col">{{'Email' | trans}}</div>
+                <div class="col">{{'Role' | trans}}</div>
+                <div class="col">{{'Actions' | trans}}</div>
+            </div>
+            {% for user in users %} 
+                <div class="row normal">
+                    <div class="col email" >{{user.email}}</div>
+                    <div class="col role" >
+                        {% for role in user.roles %}
+                            {{role}}
+                        {% endfor %}
+                    </div>
+                    <div class="col actions" >&nbsp;<a href="users/edit/{{user.id}}"><i class="fa fa-pen-to-square"></i></a><a id="disable" href="#" onclick="deleteUser({{user.id}})"  ><i class="fa fa-trash"></i></a></div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gestion utilisateurs
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/includes/js/utilisateurs.js"></script>
+{% endblock %}
+{% block body %}
+{% include '_partials/adminnav.html.twig' %}
+
+    <div class="row">
+        <div style="overflow-x:auto; width:100%">
+            <div class="container customtable">
+                <div class="row titleadmin">
+                    <div class="col titleadmin"><h1>Utilisateurs</h1></div>
+                    <div class="col actions"><a href="/admin/users/create"><i class="fa fa-plus"></i></a></div>
+                </div>
+                
+                <div class="row header">
+                    <div class="col">Nom</div>
+                    <div class="col">Courriel</div>
+                    <div class="col">Role</div>
+                    <div class="col">Actions</div>
+                </div>
+                {% for utilisateur in utilisateurs %} 
+                    <div class="row normal" ondblclick="Open({{utilisateur.id}})">
+                        <div class="col name" >{{utilisateur.nom}}</div>
+                        <div class="col courriel">{{utilisateur.courriel}}</div>
+                        <div class="col role">{{utilisateur.role.nom}}</div>
+                        <div class="col actions" >&nbsp;<a href="/admin/users/edit/{{utilisateur.id}}"><i class="fa fa-pen-to-square"></i></a><a id="disable" href="#" onclick="deleteConfirm({{utilisateur.id}})"  ><i class="fa fa-trash"></i></a></div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
