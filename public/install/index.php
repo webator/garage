@@ -13,9 +13,8 @@ if(isset($_POST['host'])){
     if ($mysqli->connect_error) {
         die("La connexion a échoué : " . $mysqli->connect_error);
     }
-    $envFile = __DIR__ . '../../.env'; // Assurez-vous que le chemin est correct
+    $envFile = __DIR__ . '../../../.env'; // Assurez-vous que le chemin est correct
     $envContent = file_get_contents($envFile);
-
     $envContent = preg_replace('/DATABASE_URL=(.+)/', "DATABASE_URL=\"mysql://$user:$password@$host:3306/$database?serverVersion=10.11.2-MariaDB&charset=utf8mb4\"", $envContent);
 
     file_put_contents($envFile, $envContent);
@@ -23,9 +22,9 @@ if(isset($_POST['host'])){
     $tablesCreated = true;
     $queries = [
         'CREATE TABLE IF NOT EXISTS roles (id INT PRIMARY KEY AUTO_INCREMENT, nom varchar(50) );',
-        'CREATE TABLE IF NOT EXISTS utilisateurs (id INT AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(50), courriel VARCHAR(100), motdepasse VARCHAR(255), role_id int(10), FOREIGN KEY (role_id) REFERENCES Roles(id) );',
+        'CREATE TABLE IF NOT EXISTS utilisateurs (id INT AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(50), courriel VARCHAR(100), motdepasse VARCHAR(255), role_id int(10), FOREIGN KEY (role_id) REFERENCES roles(id) );',
         'CREATE TABLE IF NOT EXISTS marques (id INT AUTO_INCREMENT PRIMARY KEY, nom varchar(50) );',
-        'CREATE TABLE IF NOT EXISTS voitures (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT(10), FOREIGN KEY (marque_id) REFERENCES Marques(id), modele VARCHAR(50), description TEXT, technique TEXT, prix DECIMAL(10, 2), image VARCHAR(100), miseencirculation DATE, kilometrage INT(10) ); ',
+        'CREATE TABLE IF NOT EXISTS voitures (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT(10), FOREIGN KEY (marque_id) REFERENCES marques(id), modele VARCHAR(50), description TEXT, technique TEXT, prix DECIMAL(10, 2), image VARCHAR(100), miseencirculation DATE, kilometrage INT(10) ); ',
         'CREATE TABLE IF NOT EXISTS services (id INT AUTO_INCREMENT PRIMARY KEY, titre varchar(100), description TEXT, image VARCHAR(100) );',
         'CREATE TABLE IF NOT EXISTS horaires (id INT AUTO_INCREMENT PRIMARY KEY, jour int(10), tranche varchar(50) );',
         'CREATE TABLE IF NOT EXISTS temoignages (id INT AUTO_INCREMENT PRIMARY KEY, status INT(10), nom varchar(50), note DECIMAL(2, 1), commentaire TEXT );',
@@ -44,6 +43,16 @@ if(isset($_POST['host'])){
         'INSERT INTO services (id, titre, description,image) VALUES (NULL, "Entretien","Description du service entretien.","entretien.jpg")',
         'INSERT INTO services (id, titre, description,image) VALUES (NULL, "Pneus","Description du service pneus.","pneu.jpg")',
         'INSERT INTO services (id, titre, description,image) VALUES (NULL, "Vente","Description du service vente.","vente.jpg")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 1, "08:00 - 12:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 1, "14:00 - 19:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 2, "08:00 - 12:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 2, "14:00 - 19:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 3, "08:00 - 12:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 3, "14:00 - 19:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 4, "08:00 - 12:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 4, "14:00 - 19:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 5, "08:00 - 12:00")',
+        'INSERT INTO horaires (id, jour, tranche) VALUES (NULL, 5, "14:00 - 19:00")',
     ];
 
     foreach ($queries as $query) {
