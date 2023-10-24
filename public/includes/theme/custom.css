@@ -182,9 +182,17 @@ label{
 form div{
   padding:10px;
 }
-#footer, #services, #temoignages, #occasions, #contact{
-  padding:0px 40px 40px 40px;
+@media(min-width:992px){
+  #footer, #services, #temoignages, #occasions, #contact{
+    padding:0px 40px 40px 40px;
+  }
 }
+@media(max-width:991px){
+  .col-12.cars{
+    margin:20px 0px;
+  }
+}
+
 #services h1,#services h2,#services h3 , #temoignages h1, #temoignages h2,#temoignages h3{
   color:#fff !important;
 }
@@ -268,6 +276,7 @@ form ul{
   position: relative;
   min-height: 10px;
 }
+
 #slider, #services, #occasions, #temoignages, #contact{
   width:100%;
 }
