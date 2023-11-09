@@ -30,3 +30,4 @@ Login portail administrateur:
 /admin
 Utilisateur: admin@admin.ch
 Mot de passe: 12345678
+.
